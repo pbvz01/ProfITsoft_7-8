@@ -1,0 +1,10 @@
+ua\zakharov\app\controllers\LoginController.class
+ua\zakharov\app\model\User.class
+ua\zakharov\app\repository\common\CommonRepository.class
+ua\zakharov\app\service\UserService.class
+ua\zakharov\app\controllers\RegistrationController.class
+ua\zakharov\app\configuration\WebInitializer.class
+ua\zakharov\app\controllers\LogoutController.class
+ua\zakharov\app\configuration\WebConfig.class
+ua\zakharov\app\repository\UserRepository.class
+ua\zakharov\app\controllers\MainController.class
