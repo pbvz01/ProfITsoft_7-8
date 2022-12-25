@@ -39,7 +39,6 @@ public class RegistrationController {
                     "The user with this username was created. Change your the login");
             return "registration";
         }
-        System.out.println("New user: " + user);
         userRepository.save(user);
 
         return "redirect:/login";

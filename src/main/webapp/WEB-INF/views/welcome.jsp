@@ -12,8 +12,8 @@
 </head>
 <body>
   <h1>Добро пожаловать ${userName}</h1>
-  <a href="/list-users">Список юзеров</a>
-  <a href="/logout">Выйти</a>
+  <a href="/auth/list-users">Список юзеров</a>
+  <a href="/auth/logout">Выйти</a>
 
 </body>
 </html>

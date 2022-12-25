@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ua.zakharov.app.filter.jwt.JwtProvider;
 import ua.zakharov.app.model.User;
 import ua.zakharov.app.repository.UserRepository;
 
@@ -18,24 +19,25 @@ import javax.servlet.http.HttpSession;
 public class LoginController {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private JwtProvider jwtProvider;
 
-    @GetMapping("/login")
+    @GetMapping(value = "/login")
     public String getLoginPage(Model model) {
-        model.addAttribute("userAuth", new User());
         return "login";
     }
 
     @PostMapping("/login")
     public String auth(@RequestParam("login") String login, @RequestParam("password") String password,
-                       Model model, HttpServletRequest re) {
+                       Model model, HttpServletRequest request) {
         User user = userRepository.findByLoginAndPassword(login, password);
         if(user == null) {
             model.addAttribute("authError", "Incorrect login or password.");
             return "login";
         }
 
-        HttpSession session = re.getSession(true);
-        session.setAttribute("user", user);
-        return "redirect:/welcome";
+        HttpSession session = request.getSession(true);
+        session.setAttribute("token", jwtProvider.generateToken(user.getUsername()));
+        return "redirect:/auth/welcome";
     }
 }

@@ -22,7 +22,6 @@ public class UserRepository implements CommonRepository<User> {
 
     @Override
     public User save(User model) {
-
          if (model.getId() != null) {
              User user = userData.get(model.getId());
              user.setName(model.getName());
